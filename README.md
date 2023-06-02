@@ -1,5 +1,6 @@
 # Pong
 
-Created Pong game in java 
-- used encapsulation 
+Created Pong game in java using
+- Encapsulation 
 - java.fx
+- 
