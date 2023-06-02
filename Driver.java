@@ -12,7 +12,7 @@ public class Driver extends JFrame {
 	static drawPong canvas;
 	static JFrame j;
 	static boolean keepPlaying = true;
-	public static final int changePaddleNumber = 12;
+	public static final int changePaddleNumber = 14;
 
 	
 	public static void main(String[] args) {
@@ -32,20 +32,20 @@ public class Driver extends JFrame {
 		j.addKeyListener(new KeyListener() {
 			public void keyTyped(KeyEvent e) {
 				int keyCode = e.getKeyCode();
-				if (keyCode == KeyEvent.VK_UP) {
+				if (keyCode == KeyEvent.VK_UP || keyCode ==87) {
 					canvas.setYPosition(changePaddleNumber);
 				}
-				else if (keyCode == KeyEvent.VK_DOWN) {
+				else if (keyCode == KeyEvent.VK_DOWN || keyCode == 83) {
 					canvas.setYPosition(changePaddleNumber * -1);		
 				}
 				j.repaint();
 			}
 			public void keyPressed(KeyEvent e) {
 				int keyCode = e.getKeyCode();
-				if (keyCode == KeyEvent.VK_UP) {
+				if (keyCode == KeyEvent.VK_UP || keyCode == 87) {
 					canvas.setYPosition(changePaddleNumber * -1);
 				}
-				else if (keyCode == KeyEvent.VK_DOWN) {
+				else if (keyCode == KeyEvent.VK_DOWN || keyCode == 83) {
 					canvas.setYPosition(changePaddleNumber);
 				}
 				else if (keyCode == 88) {
@@ -79,6 +79,7 @@ public class Driver extends JFrame {
 		}
 		// play the game code 
 		while (canvas.getPlayerScore() < 5 && keepPlaying && canvas.getComputerScore() < 5) {
+			canvas.showDescriptionFalse();
 			canvas.changeBallPosition(ball.getXSpeed(),ball.getYSpeed());
 			// only move computer paddle if ball going towards computer paddle 
 			if(ball.getXSpeed() < 0) {
@@ -118,6 +119,7 @@ public class Driver extends JFrame {
 				ball.returnToCenter();
 				computer.returnComputer();
 				user.returnUser();
+				canvas.showDescriptionTrue();
 				j.repaint();
 				try {
 					Thread.sleep(2000);
@@ -137,6 +139,7 @@ public class Driver extends JFrame {
 				ball.returnToCenter();
 				computer.returnComputer();
 				user.returnUser();
+				canvas.showDescriptionTrue();
 				j.repaint(); 
 				try {
 					Thread.sleep(2000);

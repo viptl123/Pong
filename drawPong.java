@@ -12,6 +12,8 @@ public class drawPong extends JComponent{
 	// ball that you play with
 	private Ball ball;
 	
+	private boolean showDescription =true;
+	
 	private int playerScore;
 	private int computerScore;
 	private static final long serialVersionUID = 1L;
@@ -30,6 +32,7 @@ public class drawPong extends JComponent{
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(Color.white);
 		
+		
 		user.drawPaddle(g);
 		computer.drawPaddle(g);
 		ball.drawBall(g);
@@ -42,6 +45,13 @@ public class drawPong extends JComponent{
 		Integer compScore = computerScore;
 		g2d.drawString(compScore.toString(), 250, 100);
 		
+		g2d.setFont(new Font(Font.MONOSPACED, Font.ROMAN_BASELINE, 15));
+		
+		if (showDescription) {
+			g2d.drawString("First to 5 points wins",420, 50);
+			g2d.drawString("Use up and down arrows or w and s to move", 350, 75);
+			g2d.drawString("Type x to quit at anytime", 405, 100);
+		}
 		
 	}
 	public void setYPosition(int positionY) {
@@ -87,6 +97,13 @@ public class drawPong extends JComponent{
 	public void increaseComputerScore() {
 		computerScore +=1;
 	}
+	public void showDescriptionTrue() {
+		showDescription = true;
+	}
+	public void showDescriptionFalse() {
+		showDescription = false;
+	}
+	
 	
 	
 	
