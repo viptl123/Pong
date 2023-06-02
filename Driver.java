@@ -29,34 +29,7 @@ public class Driver extends JFrame {
 		// set up basics of the game 
 		canvas = new drawPong();
 		// add key listener to play with keyboard
-		j.addKeyListener(new KeyListener() {
-			public void keyTyped(KeyEvent e) {
-				int keyCode = e.getKeyCode();
-				if (keyCode == KeyEvent.VK_UP || keyCode ==87) {
-					canvas.setYPosition(changePaddleNumber);
-				}
-				else if (keyCode == KeyEvent.VK_DOWN || keyCode == 83) {
-					canvas.setYPosition(changePaddleNumber * -1);		
-				}
-				j.repaint();
-			}
-			public void keyPressed(KeyEvent e) {
-				int keyCode = e.getKeyCode();
-				if (keyCode == KeyEvent.VK_UP || keyCode == 87) {
-					canvas.setYPosition(changePaddleNumber * -1);
-				}
-				else if (keyCode == KeyEvent.VK_DOWN || keyCode == 83) {
-					canvas.setYPosition(changePaddleNumber);
-				}
-				else if (keyCode == 88) {
-					keepPlaying = false;
-				}
-				j.repaint();
-			}
-			public void keyReleased(KeyEvent e) {
-				
-			}
-		});
+		
 		
 		
 		
@@ -68,9 +41,36 @@ public class Driver extends JFrame {
 		
 		// get Objects to be able to use and move them
 		Ball ball = canvas.getBall();
-		Paddle user = canvas.getUser();
 		Paddle computer = canvas.getComputer();
-		
+		Paddle user = canvas.getUser();
+		j.addKeyListener(new KeyListener() {
+			public void keyTyped(KeyEvent e) {
+				int keyCode = e.getKeyCode();
+				if (keyCode == KeyEvent.VK_UP && user.getYPos() > 10|| keyCode ==87 && user.getYPos() > 10) {
+					canvas.setYPosition(changePaddleNumber);
+				}
+				else if (keyCode == KeyEvent.VK_DOWN && user.getYPos() < 520|| keyCode == 83 && user.getYPos() < 520) {
+					canvas.setYPosition(changePaddleNumber * -1);		
+				}
+				j.repaint();
+			}
+			public void keyPressed(KeyEvent e) {
+				int keyCode = e.getKeyCode();
+				if (keyCode == KeyEvent.VK_UP && user.getYPos() > 10|| keyCode == 87 && user.getYPos() > 10) {
+					canvas.setYPosition(changePaddleNumber * -1);
+				}
+				else if (keyCode == KeyEvent.VK_DOWN && user.getYPos() < 510|| keyCode == 83 && user.getYPos() < 510) {
+					canvas.setYPosition(changePaddleNumber);
+				}
+				else if (keyCode == 88) {
+					keepPlaying = false;
+				}
+				j.repaint();
+			}
+			public void keyReleased(KeyEvent e) {
+				
+			}
+		});
 		
 		try {
 			Thread.sleep(2000);
